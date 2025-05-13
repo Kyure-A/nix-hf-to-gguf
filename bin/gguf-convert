@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -lt 2 ]]; then
+  echo "Usage: $(basename "$0") <input.safetensors> <output.gguf> [--outtype f16|f32|q4_0 ...]" >&2
+  exit 1
+fi
+
+infile=$1
+outfile=$2
+shift 2
+
+python3 "@CONVERTPY@" --outfile "$outfile" "$@" "$infile"
