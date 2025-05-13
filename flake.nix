@@ -20,15 +20,16 @@
 
             buildInputs = [
               pkgs.llama-cpp
-              pkgs.python3Packages.safetensors
               pkgs.python3Packages.numpy
+              pkgs.python3Packages.transformers
+              pkgs.python3Packages.safetensors
             ];
 
             installPhase = ''
           mkdir -p $out/bin
           cp bin/gguf-convert $out/bin/
           substituteInPlace $out/bin/gguf-convert \
-            --replace "@CONVERTPY@" "${pkgs.llama-cpp}/share/llama.cpp/convert.py"
+            --replace "@CONVERTPY@" "${pkgs.llama-cpp}/bin/convert_hf_to_gguf.py"
           chmod +x $out/bin/gguf-convert
         '';
           };
