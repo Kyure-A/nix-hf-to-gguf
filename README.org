@@ -1,0 +1,6 @@
+#+TITLE: nix-hf-to-gguf
+
+** Usage
+#+begin_src 
+  nix run . <safetensors dir>
+#+end_src
